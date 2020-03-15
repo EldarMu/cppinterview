@@ -1,3 +1,5 @@
+#include <vector>
+
 class InterviewSolutions{
 public:
 // Given a number, find the number of steps required to bring that number to 0
@@ -30,4 +32,25 @@ public:
      }
      return cnt;
     }
+// Given a vector of values and frequencies f1, v1, f2, v2, write out the full list of values.
+// Really just getting familiar with C++ syntax here as the problem is trivial.
+// Faster than 97.43% of solutions, largely thanks to reserving capacity.
+std::vector<int> decompressRLElist(std::vector<int>& nums) {
+    std::vector<int> res;
+    res.reserve(1024);
+    bool isFreq = true;
+    int freq;
+    for(std::vector<int>::iterator it = nums.begin(); it != nums.end(); ++it){
+        if(isFreq){
+            isFreq = false;
+            freq = *it;
+        } else {
+            isFreq = true;
+            for(int i=0; i<freq; i++){
+                res.push_back(*it);
+            }
+        }
+    }
+    return res;
+ }
 };
