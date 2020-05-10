@@ -1,0 +1,3 @@
+The following third party libraries are included but kept in .gitignore
+
+https://github.com/google/googletest

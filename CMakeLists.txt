@@ -1,6 +1,23 @@
-# cmake_minimum_required(VERSION <specify CMake version here>)
-project(cppinterview)
+cmake_minimum_required(VERSION 3.16)
 
-set(CMAKE_CXX_STANDARD 17)
+set(This cppinterview)
 
-add_library(cppinterview src/interviewproblems.cc src/interviewproblems.h)
+project(${This} CXX)
+
+set(CMAKE_CXX_STANDARD 11)
+
+enable_testing()
+
+add_subdirectory(lib/googletest)
+
+set(Headers 
+	src/interviewproblems.h
+)
+
+set(Sources
+	src/interviewproblems.cc
+)
+
+add_library(${This} ${Sources} ${Headers})
+
+add_subdirectory(test)

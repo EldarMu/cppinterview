@@ -5,4 +5,13 @@
 #ifndef CPPINTERVIEW_INTERVIEWPROBLEMS_H
 #define CPPINTERVIEW_INTERVIEWPROBLEMS_H
 
+namespace interviewproblems {
+	class InterviewSolutions {
+	public:
+		int numberOfSteps(int num);
+		int numberOfStepsTwo(int num);
+		std::vector<int> decompressRLElist(std::vector<int>& nums);
+	};
+}
+
 #endif //CPPINTERVIEW_INTERVIEWPROBLEMS_H
