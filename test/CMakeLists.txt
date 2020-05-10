@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
+include(Dart)
+
 set(This cppinterview_tests)
 
 set(Sources
@@ -15,5 +17,5 @@ target_link_libraries(${This} PUBLIC
 
 add_test(
 	NAME ${This}
-	COMMAND ${THIS}
+	COMMAND ${This}
 )

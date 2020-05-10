@@ -34,5 +34,6 @@
 /cmake-build-debug/
 /lib/googletest
 /out
-/.vs/cppinterview/v16/ipch/AutoPCH/b0cdd0bdbf38a924/INTERVIEWPROBLEMS.ipch
 /.vs
+/build
+.vscode/settings.json

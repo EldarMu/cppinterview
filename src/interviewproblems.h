@@ -5,6 +5,8 @@
 #ifndef CPPINTERVIEW_INTERVIEWPROBLEMS_H
 #define CPPINTERVIEW_INTERVIEWPROBLEMS_H
 
+#include <vector>
+
 namespace interviewproblems {
 	class InterviewSolutions {
 	public:

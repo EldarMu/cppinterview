@@ -1,5 +1,4 @@
 #include "interviewproblems.h"
-#include <vector>
 
 using namespace interviewproblems;
 
