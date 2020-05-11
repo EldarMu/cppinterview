@@ -21,7 +21,7 @@ TEST(numberofsteps, checkbasics){
     InterviewSolutions prob;
 
     for(intTc tc: tcs){
-        EXPECT_EQ(tc.exp, prob.numberOfSteps(tc.inp));
+        EXPECT_EQ(prob.numberOfSteps(tc.inp), tc.exp);
     }
 }
 
@@ -38,7 +38,7 @@ intTc tcs[] = {
     InterviewSolutions prob;
 
     for(intTc tc: tcs){
-        EXPECT_EQ(tc.exp, prob.numberOfStepsTwo(tc.inp));
+        EXPECT_EQ(prob.numberOfStepsTwo(tc.inp), tc.exp);
     }
 }
 
@@ -73,12 +73,12 @@ TEST(RLElist, checkbasics){
 
     InterviewSolutions prob;
     for (intVecTc tc: tcs){
-        EXPECT_THAT(tc.exp, testing::ContainerEq(prob.decompressRLElist(tc.inp)));
+        EXPECT_THAT(prob.decompressRLElist(tc.inp), testing::ContainerEq(tc.exp));
     }
     
 }
 
-TEST(SmallerNumbers, basicTests){
+TEST(SmallerNumbersSort, basicTests){
     intVecTc tcs[] = {
         {
             {8,1,2,2,3},
@@ -97,4 +97,33 @@ TEST(SmallerNumbers, basicTests){
             {0,0},
         },
     };
+    InterviewSolutions prob;
+    for(intVecTc tc: tcs){
+        EXPECT_THAT(prob.smallerNumbersThanCurrentSort(tc.inp), testing::ContainerEq(tc.exp));
+    }
+}
+
+TEST(SmallerNumbersHeap, basicTests){
+    intVecTc tcs[] = {
+        {
+            {8,1,2,2,3},
+            {4,0,1,1,3},
+        },
+        {
+            {0},
+            {0},
+        },
+        {
+            {6,5,4,8},
+            {2,1,0,3},
+        },
+        {
+            {3,3},
+            {0,0},
+        },
+    };
+    InterviewSolutions prob;
+    for(intVecTc tc: tcs){
+        EXPECT_THAT(prob.smallerNumbersThanCurrentHeap(tc.inp), testing::ContainerEq(tc.exp));
+    }
 }

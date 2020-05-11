@@ -8,6 +8,7 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <queue>
 
 namespace interviewproblems {
 	class InterviewSolutions {
@@ -16,6 +17,7 @@ namespace interviewproblems {
 		int numberOfStepsTwo(int num);
 		std::vector<int> decompressRLElist(std::vector<int>& nums);
 		std::vector<int> smallerNumbersThanCurrentSort(std::vector<int>& nums);
+		std::vector<int> smallerNumbersThanCurrentHeap(std::vector<int>& nums);
 	};
 }
 

@@ -61,7 +61,7 @@ std::vector<int> InterviewSolutions::decompressRLElist(std::vector<int>& nums) {
 // given arr of nums, return arr corresponding to number of elems in arr smaller than elem at that index
 // solution 1 uses the standard sorting algorithm and produces results according to first index of a value
 // only beats 54% of solutions, beats 100% in terms of memory usage
-std::vector<int> smallerNumbersThanCurrentSort(std::vector<int>& nums) {
+std::vector<int> InterviewSolutions::smallerNumbersThanCurrentSort(std::vector<int>& nums) {
     std::unordered_map<int, std::vector<int>> ixsForVal;
     for(int i = 0; i < nums.size(); i++){
         int v = nums.at(i);
@@ -83,4 +83,37 @@ std::vector<int> smallerNumbersThanCurrentSort(std::vector<int>& nums) {
         }
     }
     return res;    
+}
+
+// same as above but just using maxHeap
+// the exact same result performance-wise.. ok
+std::vector<int> InterviewSolutions::smallerNumbersThanCurrentHeap(std::vector<int>& nums) {
+    std::vector<int> res(nums.size());
+    std::unordered_map<int, std::vector<int>> ixsForVal;
+    for(int i = 0; i < nums.size(); i++){
+        int v = nums.at(i);
+        if(ixsForVal.find(v) == ixsForVal.end()){
+            ixsForVal.insert({v, {i}});
+        } else {
+            ixsForVal.at(v).push_back(i);
+        }
+    }
+    std::priority_queue<int> pq;
+    for(int n: nums){
+        pq.push(n);
+    }
+    int curVal = INT_MIN;
+    while(pq.size() != 0){
+        int val = pq.top();
+        pq.pop();
+        while(pq.size() != 0 && val == pq.top()){
+            pq.pop();
+        }
+        curVal = val;
+        std::vector<int> ixs = ixsForVal.at(val);
+        for(int ix: ixs){
+            res.at(ix) = pq.size();
+        }
+    }
+    return res;
 }
