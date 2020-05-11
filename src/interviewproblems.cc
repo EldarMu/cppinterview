@@ -117,3 +117,26 @@ std::vector<int> InterviewSolutions::smallerNumbersThanCurrentHeap(std::vector<i
     }
     return res;
 }
+
+// same problem but let's try counting sort, knowing that max val is 100
+// 8 ms, faster than 98% of solutions
+std::vector<int> InterviewSolutions::smallerNumbersThanCurrentCountSort(std::vector<int>& nums) {
+    const int MAXVAL = 101;
+    int vals[MAXVAL] = {0};
+    for(int n: nums){
+        vals[n]++;
+    }
+    int smallerVals = 0;
+    for(int i=0; i<MAXVAL; i++){
+        if(vals[i] > 0){
+            int curVal = vals[i];
+            vals[i] = smallerVals;
+            smallerVals += curVal;
+        }
+    }
+    std::vector<int> res(nums.size());
+    for(int i=0; i<nums.size(); i++){
+        res[i] = vals[nums[i]];
+    }
+    return res;
+}

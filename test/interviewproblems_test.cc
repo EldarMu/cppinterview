@@ -127,3 +127,28 @@ TEST(SmallerNumbersHeap, basicTests){
         EXPECT_THAT(prob.smallerNumbersThanCurrentHeap(tc.inp), testing::ContainerEq(tc.exp));
     }
 }
+
+TEST(SmallerNumbersCount, basicTests){
+    intVecTc tcs[] = {
+        {
+            {8,1,2,2,3},
+            {4,0,1,1,3},
+        },
+        {
+            {0},
+            {0},
+        },
+        {
+            {6,5,4,8},
+            {2,1,0,3},
+        },
+        {
+            {3,3},
+            {0,0},
+        },
+    };
+    InterviewSolutions prob;
+    for(intVecTc tc: tcs){
+        EXPECT_THAT(prob.smallerNumbersThanCurrentCountSort(tc.inp), testing::ContainerEq(tc.exp));
+    }
+}
