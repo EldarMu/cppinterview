@@ -3,13 +3,13 @@
 
 using namespace interviewproblems;
 
-struct nos_tc{
+struct intTc{
     int inp;
     int exp;
 };
 
 TEST(numberofsteps, checkbasics){
-    nos_tc tcs[] = {
+    intTc tcs[] = {
         {0, 0},
         {1, 1},
         {-3, 0},
@@ -20,13 +20,13 @@ TEST(numberofsteps, checkbasics){
     };
     InterviewSolutions prob;
 
-    for(nos_tc tc: tcs){
+    for(intTc tc: tcs){
         EXPECT_EQ(tc.exp, prob.numberOfSteps(tc.inp));
     }
 }
 
 TEST(numberofsteps2, checkbasics){
-nos_tc tcs[] = {
+intTc tcs[] = {
         {0, 0},
         {1, 1},
         {-3, 0},
@@ -37,18 +37,18 @@ nos_tc tcs[] = {
     };
     InterviewSolutions prob;
 
-    for(nos_tc tc: tcs){
+    for(intTc tc: tcs){
         EXPECT_EQ(tc.exp, prob.numberOfStepsTwo(tc.inp));
     }
 }
 
-struct rle_tc{
+struct intVecTc{
     std::vector<int> inp;
     std::vector<int> exp;
 };
 
 TEST(RLElist, checkbasics){
-    rle_tc tcs[] = {
+    intVecTc tcs[] = {
         {
             {},
             {},
@@ -72,8 +72,29 @@ TEST(RLElist, checkbasics){
     };
 
     InterviewSolutions prob;
-    for (rle_tc tc: tcs){
+    for (intVecTc tc: tcs){
         EXPECT_THAT(tc.exp, testing::ContainerEq(prob.decompressRLElist(tc.inp)));
     }
     
+}
+
+TEST(SmallerNumbers, basicTests){
+    intVecTc tcs[] = {
+        {
+            {8,1,2,2,3},
+            {4,0,1,1,3},
+        },
+        {
+            {0},
+            {0},
+        },
+        {
+            {6,5,4,8},
+            {2,1,0,3},
+        },
+        {
+            {3,3},
+            {0,0},
+        },
+    };
 }

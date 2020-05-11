@@ -57,3 +57,30 @@ std::vector<int> InterviewSolutions::decompressRLElist(std::vector<int>& nums) {
     }
     return res;
 }
+
+// given arr of nums, return arr corresponding to number of elems in arr smaller than elem at that index
+// solution 1 uses the standard sorting algorithm and produces results according to first index of a value
+// only beats 54% of solutions, beats 100% in terms of memory usage
+std::vector<int> smallerNumbersThanCurrentSort(std::vector<int>& nums) {
+    std::unordered_map<int, std::vector<int>> ixsForVal;
+    for(int i = 0; i < nums.size(); i++){
+        int v = nums.at(i);
+        if(ixsForVal.count(v) == 0){
+            ixsForVal.insert({v, {i}});
+        } else {
+            ixsForVal.at(v).push_back(i);
+        }
+    }
+    std::vector<int> res(nums.size());
+    std::sort(nums.begin(), nums.end());
+    for(int i = 0; i < nums.size(); i++){
+        int v = nums.at(i);
+        if(i==0 || nums.at(i-1) != v){
+            std::vector<int> ixs = ixsForVal.at(v);
+            for(int ix: ixs){
+                res.at(ix) = i; 
+            }
+        }
+    }
+    return res;    
+}

@@ -6,6 +6,8 @@
 #define CPPINTERVIEW_INTERVIEWPROBLEMS_H
 
 #include <vector>
+#include <unordered_map>
+#include <algorithm>
 
 namespace interviewproblems {
 	class InterviewSolutions {
@@ -13,6 +15,7 @@ namespace interviewproblems {
 		int numberOfSteps(int num);
 		int numberOfStepsTwo(int num);
 		std::vector<int> decompressRLElist(std::vector<int>& nums);
+		std::vector<int> smallerNumbersThanCurrentSort(std::vector<int>& nums);
 	};
 }
 
