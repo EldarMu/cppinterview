@@ -1,5 +1,5 @@
 #include "../src/interviewproblems.h"
-#include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 using namespace interviewproblems;
 
@@ -40,4 +40,40 @@ nos_tc tcs[] = {
     for(nos_tc tc: tcs){
         EXPECT_EQ(tc.exp, prob.numberOfStepsTwo(tc.inp));
     }
+}
+
+struct rle_tc{
+    std::vector<int> inp;
+    std::vector<int> exp;
+};
+
+TEST(RLElist, checkbasics){
+    rle_tc tcs[] = {
+        {
+            {},
+            {},
+        },
+        {
+            {0,1},
+            {},
+        },
+        {
+            {-1, 1, 2, 2},
+            {2,2},
+        },
+        {
+            {1,1},
+            {1},
+        },
+        {
+            {3,12934, 1, 33333, 5, 1},
+            {12934, 12934, 12934, 33333, 1, 1, 1, 1, 1},
+        },
+    };
+
+    InterviewSolutions prob;
+    for (rle_tc tc: tcs){
+        EXPECT_THAT(tc.exp, testing::ContainerEq(prob.decompressRLElist(tc.inp)));
+    }
+    
 }
