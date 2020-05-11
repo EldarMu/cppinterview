@@ -12,10 +12,12 @@ add_subdirectory(lib/googletest)
 
 set(Headers 
 	src/interviewproblems.h
+	src/testhelpers.h
 )
 
 set(Sources
 	src/interviewproblems.cc
+	src/testhelpers.cc
 )
 
 add_library(${This} ${Sources} ${Headers})

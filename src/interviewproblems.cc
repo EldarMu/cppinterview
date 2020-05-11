@@ -140,3 +140,27 @@ std::vector<int> InterviewSolutions::smallerNumbersThanCurrentCountSort(std::vec
     }
     return res;
 }
+
+// basic find val in binary tree (not BST). In this case we get a clone of the tree 
+// but it doesn't matter since duplicate vals aren't allowed
+// 696 ms, faster than 69% of solutions. Going to try a BFS in a while loop
+TreeNode* recursFindNode(TreeNode* tn, int val){
+    int curVal = tn->val;
+    if(curVal==val){
+        return tn;
+    }
+    if(tn->left != NULL){
+        TreeNode* left = recursFindNode(tn->left, val);
+        if(left!=NULL){return left;}
+    }
+    if(tn->right != NULL){
+        TreeNode* right = recursFindNode(tn->right, val);
+        if(right != NULL){return right;}
+    }    
+    return NULL;
+}
+TreeNode* InterviewSolutions::getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+    int val = target->val;
+    if(cloned==NULL){return cloned;}
+    return recursFindNode(cloned, val);
+}

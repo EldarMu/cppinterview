@@ -11,6 +11,14 @@
 #include <queue>
 
 namespace interviewproblems {
+
+	struct TreeNode {
+      int val;
+      TreeNode *left;
+      TreeNode *right;
+      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+  	};
+
 	class InterviewSolutions {
 	public:
 		int numberOfSteps(int num);
@@ -19,6 +27,7 @@ namespace interviewproblems {
 		std::vector<int> smallerNumbersThanCurrentSort(std::vector<int>& nums);
 		std::vector<int> smallerNumbersThanCurrentHeap(std::vector<int>& nums);
 		std::vector<int> smallerNumbersThanCurrentCountSort(std::vector<int>& nums);
+		TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target);
 	};
 }
 
