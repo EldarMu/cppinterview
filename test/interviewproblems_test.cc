@@ -154,7 +154,7 @@ TEST(SmallerNumbersCount, basicTests){
     }
 }
 
-TEST(GetTargetCopy, basicTests){
+TEST(GetTargetCopyDFS, basicTests){
     std::vector<std::vector<int>> inputs = {
         {7,4,3,NULL,NULL,6,19},
         {7},
@@ -168,7 +168,26 @@ TEST(GetTargetCopy, basicTests){
         TreeNode* copyhead = genTreeFromVec(inp);
         TreeNode* target = getRandomNode(orighead);
         InterviewSolutions prob;
-        TreeNode* result = prob.getTargetCopy(orighead, copyhead, target);
+        TreeNode* result = prob.getTargetCopyRecurs(orighead, copyhead, target);
+        EXPECT_EQ(result->val, target->val);
+    }
+}
+
+TEST(GetTargetCopyBFS, basicTests){
+    std::vector<std::vector<int>> inputs = {
+        {7,4,3,NULL,NULL,6,19},
+        {7},
+        {8,NULL,6,NULL,5,NULL,4,NULL,3,NULL,2,NULL,1},
+        {1,2,3,4,5,6,7,8,9,10},
+        {1,2,NULL,3},
+    };
+
+    for(std::vector<int> inp: inputs){
+        TreeNode* orighead = genTreeFromVec(inp);
+        TreeNode* copyhead = genTreeFromVec(inp);
+        TreeNode* target = getRandomNode(orighead);
+        InterviewSolutions prob;
+        TreeNode* result = prob.getTargetCopyBFS(orighead, copyhead, target);
         EXPECT_EQ(result->val, target->val);
     }
 }

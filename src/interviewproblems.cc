@@ -159,8 +159,36 @@ TreeNode* recursFindNode(TreeNode* tn, int val){
     }    
     return NULL;
 }
-TreeNode* InterviewSolutions::getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+TreeNode* InterviewSolutions::getTargetCopyRecurs(TreeNode* original, TreeNode* cloned, TreeNode* target) {
     int val = target->val;
     if(cloned==NULL){return cloned;}
     return recursFindNode(cloned, val);
+}
+
+// same but BFS with some loop unrolling, 712 ms. 
+// same code in golang runs in 0 ms. Something's wonky with leetcode's c++ runtime
+TreeNode* InterviewSolutions::getTargetCopyBFS(TreeNode* original, TreeNode* cloned, TreeNode* target){
+    if(target==NULL || original==NULL || cloned==NULL){ return NULL; }
+    int v = target->val;
+    std::queue<TreeNode*> q;
+    q.push(cloned);
+    while(q.size()!=0){
+        TreeNode* cur = q.front();
+        q.pop();
+        if(cur->val == v){ return cur; }
+        TreeNode* l = cur->left;
+        if(l != NULL){
+            if(l->val == v){ return l; }
+            if(l->left != NULL){ q.push(l->left); }
+            if(l->right != NULL){ q.push(l->right); }
+        }
+        
+        TreeNode* r = cur->right;
+        if(r != NULL){
+            if(r->val == v){ return r; }
+            if(r->left != NULL){ q.push(r->left); }
+            if(r->right != NULL){ q.push(r->right); }
+        }
+    }
+    return NULL;
 }

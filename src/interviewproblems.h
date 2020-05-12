@@ -27,7 +27,8 @@ namespace interviewproblems {
 		std::vector<int> smallerNumbersThanCurrentSort(std::vector<int>& nums);
 		std::vector<int> smallerNumbersThanCurrentHeap(std::vector<int>& nums);
 		std::vector<int> smallerNumbersThanCurrentCountSort(std::vector<int>& nums);
-		TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target);
+		TreeNode* getTargetCopyRecurs(TreeNode* original, TreeNode* cloned, TreeNode* target);
+		TreeNode* getTargetCopyBFS(TreeNode* original, TreeNode* cloned, TreeNode* target);
 	};
 }
 
