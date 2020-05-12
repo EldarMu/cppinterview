@@ -183,13 +183,51 @@ TEST(GetTargetCopyBFS, basicTests){
         {1,2,3,4,5,6,7,8,9,10},
         {1,2,INT_MIN,3},
     };
-
+    InterviewSolutions prob;
     for(vector<int> inp: inputs){
         TreeNode* orighead = genTreeFromVec(inp);
         TreeNode* copyhead = genTreeFromVec(inp);
         TreeNode* target = getRandomNode(orighead);
-        InterviewSolutions prob;
         TreeNode* result = prob.getTargetCopyBFS(orighead, copyhead, target);
         EXPECT_EQ(result->val, target->val);
+    }
+}
+
+struct TreeSumTC{
+    vector<int> tree;
+    int sum;
+};
+
+TEST(DeepestLeavesSum, basicTests){
+    vector<TreeSumTC> tcs = {
+        {
+            {7,4,3,INT_MIN,INT_MIN,6,19},
+            25,
+        },
+        {
+            {7},
+            7,
+        },
+        {
+            {8,INT_MIN,6,INT_MIN,5,INT_MIN,4,INT_MIN,3,INT_MIN,2,INT_MIN,1},
+            1,
+        },
+        {
+            {1,2,3,4,5,6,7,8,9,10},
+            27,
+        },
+        {
+            {1,2,INT_MIN,3},
+            3,
+        },
+        {
+            {1,2,3,4,5,INT_MIN,6,7,INT_MIN,INT_MIN,INT_MIN,INT_MIN,8},
+            15,
+        },
+    };
+    InterviewSolutions prob;
+    for(TreeSumTC tc: tcs){
+        TreeNode* head = genTreeFromVec(tc.tree);
+        EXPECT_EQ(prob.deepestLeavesSum(head), tc.sum);
     }
 }

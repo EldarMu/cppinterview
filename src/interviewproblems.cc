@@ -193,3 +193,29 @@ TreeNode* InterviewSolutions::getTargetCopyBFS(TreeNode* original, TreeNode* clo
     }
     return NULL;
 }
+
+// given a tree, return the sum of the values of the lowest level
+// seemed obvious to use a two queue bfs approach, 
+// performance is mediocre (56ms, beats 44% of c++ solutions)
+int InterviewSolutions::deepestLeavesSum(TreeNode* root) {
+    if(root){ return 0; }
+    queue<TreeNode*> curLevel;
+    curLevel.push(root);
+    int sum = 0;
+    while(curLevel.size() != 0){
+        sum = 0;
+        int len = curLevel.size();
+        for(int i=0; i<len; i++){
+            TreeNode* tn = curLevel.front();
+            curLevel.pop();
+            sum += tn->val;
+            if(tn->left){
+                curLevel.push(tn->left);
+            }
+            if(tn->right){ 
+                curLevel.push(tn->right);
+            }
+        }
+    }
+    return sum;
+}

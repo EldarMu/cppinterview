@@ -30,12 +30,13 @@ namespace interviewproblems {
 	public:
 		int numberOfSteps(int num);
 		int numberOfStepsTwo(int num);
-		std::vector<int> decompressRLElist(std::vector<int>& nums);
-		std::vector<int> smallerNumbersThanCurrentSort(std::vector<int>& nums);
-		std::vector<int> smallerNumbersThanCurrentHeap(std::vector<int>& nums);
-		std::vector<int> smallerNumbersThanCurrentCountSort(std::vector<int>& nums);
+		vector<int> decompressRLElist(vector<int>& nums);
+		vector<int> smallerNumbersThanCurrentSort(vector<int>& nums);
+		vector<int> smallerNumbersThanCurrentHeap(vector<int>& nums);
+		vector<int> smallerNumbersThanCurrentCountSort(vector<int>& nums);
 		TreeNode* getTargetCopyRecurs(TreeNode* original, TreeNode* cloned, TreeNode* target);
 		TreeNode* getTargetCopyBFS(TreeNode* original, TreeNode* cloned, TreeNode* target);
+		int deepestLeavesSum(TreeNode* root);
 	};
 }
 
