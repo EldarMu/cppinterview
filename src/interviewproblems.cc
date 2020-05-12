@@ -3,6 +3,7 @@
 using namespace interviewproblems;
 
 
+
 // Given a number, find the number of steps required to bring that number to 0
 // the only steps allowed are division by two and subtraction by one.
 // Solution 1, the most obvious one, still as fast as it gets (0 ms).
@@ -38,12 +39,12 @@ int InterviewSolutions::numberOfStepsTwo(int num) {
 // Given a vector of values and frequencies f1, v1, f2, v2, write out the full list of values.
 // Really just getting familiar with C++ syntax here as the problem is trivial.
 // Faster than 97.43% of solutions, largely thanks to reserving capacity.
-std::vector<int> InterviewSolutions::decompressRLElist(std::vector<int>& nums) {
-    std::vector<int> res;
+vector<int> InterviewSolutions::decompressRLElist(vector<int>& nums) {
+    vector<int> res;
     res.reserve(1024);
     bool isFreq = true;
     int freq;
-    for (std::vector<int>::iterator it = nums.begin(); it != nums.end(); ++it) {
+    for (vector<int>::iterator it = nums.begin(); it != nums.end(); ++it) {
         if (isFreq) {
             isFreq = false;
             freq = *it;
@@ -61,8 +62,8 @@ std::vector<int> InterviewSolutions::decompressRLElist(std::vector<int>& nums) {
 // given arr of nums, return arr corresponding to number of elems in arr smaller than elem at that index
 // solution 1 uses the standard sorting algorithm and produces results according to first index of a value
 // only beats 54% of solutions, beats 100% in terms of memory usage
-std::vector<int> InterviewSolutions::smallerNumbersThanCurrentSort(std::vector<int>& nums) {
-    std::unordered_map<int, std::vector<int>> ixsForVal;
+vector<int> InterviewSolutions::smallerNumbersThanCurrentSort(vector<int>& nums) {
+    unordered_map<int, vector<int>> ixsForVal;
     for(int i = 0; i < nums.size(); i++){
         int v = nums.at(i);
         if(ixsForVal.count(v) == 0){
@@ -71,12 +72,12 @@ std::vector<int> InterviewSolutions::smallerNumbersThanCurrentSort(std::vector<i
             ixsForVal.at(v).push_back(i);
         }
     }
-    std::vector<int> res(nums.size());
-    std::sort(nums.begin(), nums.end());
+    vector<int> res(nums.size());
+    sort(nums.begin(), nums.end());
     for(int i = 0; i < nums.size(); i++){
         int v = nums.at(i);
         if(i==0 || nums.at(i-1) != v){
-            std::vector<int> ixs = ixsForVal.at(v);
+            vector<int> ixs = ixsForVal.at(v);
             for(int ix: ixs){
                 res.at(ix) = i; 
             }
@@ -87,9 +88,9 @@ std::vector<int> InterviewSolutions::smallerNumbersThanCurrentSort(std::vector<i
 
 // same as above but just using maxHeap
 // the exact same result performance-wise.. ok
-std::vector<int> InterviewSolutions::smallerNumbersThanCurrentHeap(std::vector<int>& nums) {
-    std::vector<int> res(nums.size());
-    std::unordered_map<int, std::vector<int>> ixsForVal;
+vector<int> InterviewSolutions::smallerNumbersThanCurrentHeap(vector<int>& nums) {
+    vector<int> res(nums.size());
+    unordered_map<int, vector<int>> ixsForVal;
     for(int i = 0; i < nums.size(); i++){
         int v = nums.at(i);
         if(ixsForVal.find(v) == ixsForVal.end()){
@@ -98,7 +99,7 @@ std::vector<int> InterviewSolutions::smallerNumbersThanCurrentHeap(std::vector<i
             ixsForVal.at(v).push_back(i);
         }
     }
-    std::priority_queue<int> pq;
+    priority_queue<int> pq;
     for(int n: nums){
         pq.push(n);
     }
@@ -110,7 +111,7 @@ std::vector<int> InterviewSolutions::smallerNumbersThanCurrentHeap(std::vector<i
             pq.pop();
         }
         curVal = val;
-        std::vector<int> ixs = ixsForVal.at(val);
+        vector<int> ixs = ixsForVal.at(val);
         for(int ix: ixs){
             res.at(ix) = pq.size();
         }
@@ -120,7 +121,7 @@ std::vector<int> InterviewSolutions::smallerNumbersThanCurrentHeap(std::vector<i
 
 // same problem but let's try counting sort, knowing that max val is 100
 // 8 ms, faster than 98% of solutions
-std::vector<int> InterviewSolutions::smallerNumbersThanCurrentCountSort(std::vector<int>& nums) {
+vector<int> InterviewSolutions::smallerNumbersThanCurrentCountSort(vector<int>& nums) {
     const int MAXVAL = 101;
     int vals[MAXVAL] = {0};
     for(int n: nums){
@@ -134,7 +135,7 @@ std::vector<int> InterviewSolutions::smallerNumbersThanCurrentCountSort(std::vec
             smallerVals += curVal;
         }
     }
-    std::vector<int> res(nums.size());
+    vector<int> res(nums.size());
     for(int i=0; i<nums.size(); i++){
         res[i] = vals[nums[i]];
     }
@@ -170,7 +171,7 @@ TreeNode* InterviewSolutions::getTargetCopyRecurs(TreeNode* original, TreeNode* 
 TreeNode* InterviewSolutions::getTargetCopyBFS(TreeNode* original, TreeNode* cloned, TreeNode* target){
     if(target==NULL || original==NULL || cloned==NULL){ return NULL; }
     int v = target->val;
-    std::queue<TreeNode*> q;
+    queue<TreeNode*> q;
     q.push(cloned);
     while(q.size()!=0){
         TreeNode* cur = q.front();

@@ -44,8 +44,8 @@ intTc tcs[] = {
 }
 
 struct intVecTc{
-    std::vector<int> inp;
-    std::vector<int> exp;
+    vector<int> inp;
+    vector<int> exp;
 };
 
 TEST(RLElist, checkbasics){
@@ -155,15 +155,16 @@ TEST(SmallerNumbersCount, basicTests){
 }
 
 TEST(GetTargetCopyDFS, basicTests){
-    std::vector<std::vector<int>> inputs = {
-        {7,4,3,NULL,NULL,6,19},
+    vector<vector<int>> inputs = {
+        //using INT_MIN as standin for nullptr
+        {7,4,3,INT_MIN,INT_MIN,6,19},
         {7},
-        {8,NULL,6,NULL,5,NULL,4,NULL,3,NULL,2,NULL,1},
+        {8,INT_MIN,6,INT_MIN,5,INT_MIN,4,INT_MIN,3,INT_MIN,2,INT_MIN,1},
         {1,2,3,4,5,6,7,8,9,10},
-        {1,2,NULL,3},
+        {1,2,INT_MIN,3},
     };
 
-    for(std::vector<int> inp: inputs){
+    for(vector<int> inp: inputs){
         TreeNode* orighead = genTreeFromVec(inp);
         TreeNode* copyhead = genTreeFromVec(inp);
         TreeNode* target = getRandomNode(orighead);
@@ -174,15 +175,16 @@ TEST(GetTargetCopyDFS, basicTests){
 }
 
 TEST(GetTargetCopyBFS, basicTests){
-    std::vector<std::vector<int>> inputs = {
-        {7,4,3,NULL,NULL,6,19},
+    vector<vector<int>> inputs = {
+        // using INT_MIN as standin for nullptr
+        {7,4,3,INT_MIN,INT_MIN,6,19},
         {7},
-        {8,NULL,6,NULL,5,NULL,4,NULL,3,NULL,2,NULL,1},
+        {8,INT_MIN,6,INT_MIN,5,INT_MIN,4,INT_MIN,3,INT_MIN,2,INT_MIN,1},
         {1,2,3,4,5,6,7,8,9,10},
-        {1,2,NULL,3},
+        {1,2,INT_MIN,3},
     };
 
-    for(std::vector<int> inp: inputs){
+    for(vector<int> inp: inputs){
         TreeNode* orighead = genTreeFromVec(inp);
         TreeNode* copyhead = genTreeFromVec(inp);
         TreeNode* target = getRandomNode(orighead);

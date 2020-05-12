@@ -4,7 +4,7 @@
 using namespace interviewproblems;
 
 TreeNode* interviewproblems::genTreeFromVec(std::vector<int> vals){
-    if(vals.size()==0 || vals[0]==NULL){return NULL;}
+    if(vals.size()==0 || vals[0]==INT_MIN){return NULL;}
 
     std::queue<TreeNode*> q;
     int ptr = 0; 
@@ -19,13 +19,13 @@ TreeNode* interviewproblems::genTreeFromVec(std::vector<int> vals){
         } else{
             TreeNode* tn = q.front();
             q.pop();
-            if(ptr < vals.size() && vals[ptr]!=NULL){
+            if(ptr < vals.size() && vals[ptr]!=INT_MIN){
                 TreeNode *l = new TreeNode(vals[ptr]);
                 tn->left = l;
                 q.push(l);
             }
             ptr++;
-            if(ptr < vals.size() && vals[ptr]!=NULL){
+            if(ptr < vals.size() && vals[ptr]!=INT_MIN){
                 TreeNode *r = new TreeNode(vals[ptr]);
                 tn->right = r;
                 q.push(r);

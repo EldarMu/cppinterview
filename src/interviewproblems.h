@@ -9,8 +9,15 @@
 #include <unordered_map>
 #include <algorithm>
 #include <queue>
+#include <string>
 
 namespace interviewproblems {
+	using std::string;
+	using std::vector;
+	using std::unordered_map;
+	using std::priority_queue;
+	using std::sort;
+	using std::queue;
 
 	struct TreeNode {
       int val;
