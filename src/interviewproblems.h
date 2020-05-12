@@ -37,6 +37,7 @@ namespace interviewproblems {
 		TreeNode* getTargetCopyRecurs(TreeNode* original, TreeNode* cloned, TreeNode* target);
 		TreeNode* getTargetCopyBFS(TreeNode* original, TreeNode* cloned, TreeNode* target);
 		int deepestLeavesSum(TreeNode* root);
+		int deepestLeavesSumDFS(TreeNode* root);
 	};
 }
 

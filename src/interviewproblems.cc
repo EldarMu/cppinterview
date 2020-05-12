@@ -198,7 +198,7 @@ TreeNode* InterviewSolutions::getTargetCopyBFS(TreeNode* original, TreeNode* clo
 // seemed obvious to use a two queue bfs approach, 
 // performance is mediocre (56ms, beats 44% of c++ solutions)
 int InterviewSolutions::deepestLeavesSum(TreeNode* root) {
-    if(root){ return 0; }
+    if(!root){ return 0; }
     queue<TreeNode*> curLevel;
     curLevel.push(root);
     int sum = 0;
@@ -218,4 +218,24 @@ int InterviewSolutions::deepestLeavesSum(TreeNode* root) {
         }
     }
     return sum;
+}
+
+// same but with dfs, basically the same results
+void recursSum(TreeNode* tn, int level, vector<int>* sums){
+    if(!tn) {return;}
+    if(sums->size()<=level){
+        sums->push_back(tn->val);
+    } else {
+        sums->at(level)+= tn->val;
+    }
+    if(tn->left){ recursSum(tn->left, level+1, sums); }
+    if(tn->right){ recursSum(tn->right, level+1, sums); }
+}
+
+int InterviewSolutions::deepestLeavesSumDFS(TreeNode* root){
+    vector<int>* sums = new vector<int>();
+    sums->reserve(100);
+    recursSum(root, 0, sums);
+    if(sums->size()==0) { return 0; }
+    return sums->at(sums->size()-1);
 }
