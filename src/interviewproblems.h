@@ -12,6 +12,7 @@
 #include <string>
 
 namespace interviewproblems {
+	using std::to_string;
 	using std::string;
 	using std::vector;
 	using std::unordered_map;
@@ -39,6 +40,7 @@ namespace interviewproblems {
 		int deepestLeavesSum(TreeNode* root);
 		int deepestLeavesSumDFS(TreeNode* root);
 		int deepestLeavesSumArr(TreeNode* root);
+		vector<vector<int>> groupThePeople(vector<int>& groupSizes);
 	};
 }
 

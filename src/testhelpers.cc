@@ -6,7 +6,7 @@ using namespace interviewproblems;
 TreeNode* interviewproblems::genTreeFromVec(std::vector<int> vals){
     if(vals.size()==0 || vals[0]==INT_MIN){return NULL;}
 
-    std::queue<TreeNode*> q;
+    queue<TreeNode*> q;
     int ptr = 0; 
     TreeNode* head = NULL;
     
@@ -36,7 +36,7 @@ TreeNode* interviewproblems::genTreeFromVec(std::vector<int> vals){
     return head;
 }
 
-void interviewproblems::recursAddNodes(TreeNode* tn, std::vector<TreeNode*> &nodes){
+void interviewproblems::recursAddNodes(TreeNode* tn, vector<TreeNode*> &nodes){
     if(tn!=NULL){
         nodes.push_back(tn);
     }
@@ -51,10 +51,37 @@ void interviewproblems::recursAddNodes(TreeNode* tn, std::vector<TreeNode*> &nod
 }
 
 TreeNode* interviewproblems::getRandomNode(TreeNode* head){
-    std::vector<TreeNode*> allNodes;
+    vector<TreeNode*> allNodes;
     recursAddNodes(head, allNodes);
-    int rval = std::rand()%allNodes.size();
+    int rval = rand()%allNodes.size();
     return allNodes[rval];
+}
+
+bool interviewproblems::groupMatcher(vector<vector<int>> want, vector<vector<int>> got){
+    unordered_map<string, bool> wanted;
+    for(vector<int> v: want){
+        string s;
+        for(int n: v){
+            s.append(to_string(n));
+        }
+        wanted.insert({s, false});
+    }
+    for(vector<int>v: got){
+        string s;
+        for(int n:v){
+            s.append(to_string(n));
+        }
+        if(wanted.find(s) == wanted.end()){
+            return false;
+        }
+        wanted[s] = true;
+    }
+    for(auto& it: wanted){
+        if(it.second==false){
+            return false;
+        }
+    }
+    return true;
 }
 
 

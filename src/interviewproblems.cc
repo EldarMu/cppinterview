@@ -261,3 +261,36 @@ int InterviewSolutions::deepestLeavesSumArr(TreeNode* root){
     int levels[MAX_TREE_LEVELS] = {0};
     return levels[recursLowestLevel(root, 0, levels)];
 }
+
+// given an array where index is id and val is size of group,
+// return valid groups of ids. Problem constrained to valid inputs
+// 24 ms, faster than 89% of c++ solutions
+vector<vector<int>> InterviewSolutions::groupThePeople(vector<int>& groupSizes) {
+    int sz = groupSizes.size();
+    vector<vector<int>> result;
+    result.reserve(sz);
+    unordered_map<int, vector<int>> m;
+    m.reserve(sz);
+    for(int i=0; i<sz; i++){
+        int val = groupSizes[i];
+        if(m.find(val) == m.end()){
+            vector<int> v;
+            v.push_back(i);
+            m.insert({val, v});
+        } else {
+            int vsz = m.at(val).size();
+            if(vsz<val){
+                m.at(val).push_back(i);
+            } else {
+                result.push_back(m.at(val));
+                vector<int> nv;
+                nv.push_back(i);
+                m.insert_or_assign(val, nv);
+            }
+        }
+    }
+    for (auto& it: m){
+        result.push_back(it.second);
+    }
+    return result;            
+}

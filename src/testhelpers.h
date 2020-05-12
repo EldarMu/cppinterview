@@ -12,6 +12,7 @@ namespace interviewproblems {
     TreeNode* genTreeFromVec(std::vector<int> vals);
     TreeNode* getRandomNode(TreeNode* head);
     void recursAddNodes(TreeNode* tn, std::vector<TreeNode*> &nodes);
+    bool groupMatcher(vector<vector<int>> want, vector<vector<int>> got);
 }
 
 #endif //CPPINTERVIEW_TESTHELPERS_H

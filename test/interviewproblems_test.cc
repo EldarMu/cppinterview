@@ -300,4 +300,42 @@ TEST(DeepestLeavesSumArr, basicTests){
     }
 }
 
+struct Group_TC{
+    vector<int> input;
+    vector<vector<int>> matches;
+};
+
+TEST(GroupThePeople, basicTests){
+    vector<Group_TC> tcs{
+        {
+            {},
+            {},
+        },
+        {
+            {1},
+            {{0}},
+        },
+        {
+            {2,1,2},
+            {{1},{0,2}},
+        },
+        {
+            {3,3,3},
+            {{0,1,2}},
+        },
+        {
+            {3,3,3,3,3,1,3},
+            {{5},{0,1,2},{3,4,6}},
+        },
+        {
+            {2,1,3,3,3,2},
+            {{1},{0,5},{2,3,4}},
+        },
+    };
+    InterviewSolutions prob;
+    for(Group_TC tc: tcs){
+        EXPECT_TRUE(groupMatcher(tc.matches, prob.groupThePeople(tc.input)));
+    }
+}
+
 
