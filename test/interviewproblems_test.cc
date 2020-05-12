@@ -265,3 +265,39 @@ TEST(DeepestLeavesSumDFS, basicTests){
         EXPECT_EQ(prob.deepestLeavesSumDFS(head), tc.sum);
     }
 }
+
+TEST(DeepestLeavesSumArr, basicTests){
+    vector<TreeSumTC> tcs = {
+        {
+            {1,2,3,4,5,6,7,8,9,10},
+            27,
+        },
+        {
+            {7,4,3,INT_MIN,INT_MIN,6,19},
+            25,
+        },
+        {
+            {7},
+            7,
+        },
+        {
+            {8,INT_MIN,6,INT_MIN,5,INT_MIN,4,INT_MIN,3,INT_MIN,2,INT_MIN,1},
+            1,
+        },
+        {
+            {1,2,INT_MIN,3},
+            3,
+        },
+        {
+            {1,2,3,4,5,INT_MIN,6,7,INT_MIN,INT_MIN,INT_MIN,INT_MIN,8},
+            15,
+        },
+    };
+    InterviewSolutions prob;
+    for(TreeSumTC tc: tcs){
+        TreeNode* head = genTreeFromVec(tc.tree);
+        EXPECT_EQ(prob.deepestLeavesSumArr(head), tc.sum);
+    }
+}
+
+

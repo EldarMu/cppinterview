@@ -239,3 +239,25 @@ int InterviewSolutions::deepestLeavesSumDFS(TreeNode* root){
     if(sums->size()==0) { return 0; }
     return sums->at(sums->size()-1);
 }
+
+// the exact same performance as before
+// at this point I'm certain leetcode isn't measuring c++ performance correctly
+int recursLowestLevel(TreeNode* tn, int curLevel, int (&levels)[10000]){
+    levels[curLevel] += tn->val;
+    int l = curLevel;
+    if(tn->left){ l = recursLowestLevel(tn->left, curLevel+1, levels); }
+    int r = curLevel;
+    if(tn->right){ r = recursLowestLevel(tn->right, curLevel+1, levels); }
+    if(r > l){
+        return r;
+    }
+    return l;
+}
+
+int InterviewSolutions::deepestLeavesSumArr(TreeNode* root){
+    if(!root) { return 0; }
+    // problem condition of max tree nodes being 10,000 or less
+    const int MAX_TREE_LEVELS = 10000;
+    int levels[MAX_TREE_LEVELS] = {0};
+    return levels[recursLowestLevel(root, 0, levels)];
+}
