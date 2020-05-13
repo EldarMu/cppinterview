@@ -380,4 +380,38 @@ TEST(SumEvenGrandparent, basicTests){
     }
 }
 
+struct VecVecInt{
+    vector<vector<int>> in;
+    int want;
+};
+
+TEST(MinTimeToVisitAllPoints, basicTest){
+    VecVecInt tcs[]{
+        {
+            {},
+            0,
+        },
+        {
+            {{0,0}},
+            0,
+        },
+        {
+            {{0,0},{1,1}},
+            1,
+        },
+        {
+            {{1,1},{3,4},{-1,0}},
+            7,
+        },
+        {
+            {{3,2},{-2,2}},
+            5,
+        },
+    };
+    InterviewSolutions prob;
+    for(VecVecInt tc: tcs){
+        EXPECT_EQ(prob.minTimeToVisitAllPoints(tc.in), tc.want);
+    }
+}
+
 

@@ -311,3 +311,34 @@ int InterviewSolutions::sumEvenGrandparent(TreeNode* root) {
     recursSumNodesGP(root, false, false, sum);
     return sum[0];
 }
+
+// given a vector of 2d points to visit in order,
+// with one step either horizontal, vertical, or diagonal (1,0),(0,1),(1,1)
+// return the minimum number of steps
+// 8 ms, beats 94% of solutions, because I declare no vars in loop
+int InterviewSolutions::minTimeToVisitAllPoints(vector<vector<int>>& points) {
+    if(points.size()<2){ return 0; }
+    auto it = points.begin();
+    int prevX = it->at(0);
+    int prevY = it->at(1);
+    it++;
+    int curX = 0;
+    int curY = 0;
+    int diffX = 0;
+    int diffY = 0;
+    int steps = 0;
+    for(it; it!=points.end(); it++){
+        curX = it->at(0);
+        curY = it->at(1);
+        diffX = abs(curX-prevX);
+        diffY = abs(curY-prevY);
+        if(diffY>diffX){
+            steps += diffY;
+        } else {
+            steps += diffX;
+        }
+        prevX = curX;
+        prevY = curY;
+    }
+    return steps;         
+}

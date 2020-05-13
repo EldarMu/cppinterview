@@ -21,10 +21,10 @@ namespace interviewproblems {
 	using std::queue;
 
 	struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+		int val;
+		TreeNode *left;
+		TreeNode *right;
+		TreeNode(int x) : val(x), left(NULL), right(NULL) {}
   	};
 
 	class InterviewSolutions {
@@ -42,6 +42,7 @@ namespace interviewproblems {
 		int deepestLeavesSumArr(TreeNode* root);
 		vector<vector<int>> groupThePeople(vector<int>& groupSizes);
 		int sumEvenGrandparent(TreeNode* root);
+		int minTimeToVisitAllPoints(vector<vector<int>>& points);
 	};
 }
 
