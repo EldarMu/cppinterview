@@ -193,13 +193,13 @@ TEST(GetTargetCopyBFS, basicTests){
     }
 }
 
-struct TreeSumTC{
+struct VecIntTC{
     vector<int> tree;
-    int sum;
+    int want;
 };
 
 TEST(DeepestLeavesSum, basicTests){
-    vector<TreeSumTC> tcs = {
+    vector<VecIntTC> tcs = {
         {
             {7,4,3,INT_MIN,INT_MIN,6,19},
             25,
@@ -226,14 +226,14 @@ TEST(DeepestLeavesSum, basicTests){
         },
     };
     InterviewSolutions prob;
-    for(TreeSumTC tc: tcs){
+    for(VecIntTC tc: tcs){
         TreeNode* head = genTreeFromVec(tc.tree);
-        EXPECT_EQ(prob.deepestLeavesSum(head), tc.sum);
+        EXPECT_EQ(prob.deepestLeavesSum(head), tc.want);
     }
 }
 
 TEST(DeepestLeavesSumDFS, basicTests){
-    vector<TreeSumTC> tcs = {
+    vector<VecIntTC> tcs = {
         {
             {7,4,3,INT_MIN,INT_MIN,6,19},
             25,
@@ -260,14 +260,14 @@ TEST(DeepestLeavesSumDFS, basicTests){
         },
     };
     InterviewSolutions prob;
-    for(TreeSumTC tc: tcs){
+    for(VecIntTC tc: tcs){
         TreeNode* head = genTreeFromVec(tc.tree);
-        EXPECT_EQ(prob.deepestLeavesSumDFS(head), tc.sum);
+        EXPECT_EQ(prob.deepestLeavesSumDFS(head), tc.want);
     }
 }
 
 TEST(DeepestLeavesSumArr, basicTests){
-    vector<TreeSumTC> tcs = {
+    vector<VecIntTC> tcs = {
         {
             {1,2,3,4,5,6,7,8,9,10},
             27,
@@ -294,9 +294,9 @@ TEST(DeepestLeavesSumArr, basicTests){
         },
     };
     InterviewSolutions prob;
-    for(TreeSumTC tc: tcs){
+    for(VecIntTC tc: tcs){
         TreeNode* head = genTreeFromVec(tc.tree);
-        EXPECT_EQ(prob.deepestLeavesSumArr(head), tc.sum);
+        EXPECT_EQ(prob.deepestLeavesSumArr(head), tc.want);
     }
 }
 
@@ -335,6 +335,48 @@ TEST(GroupThePeople, basicTests){
     InterviewSolutions prob;
     for(Group_TC tc: tcs){
         EXPECT_TRUE(groupMatcher(tc.matches, prob.groupThePeople(tc.input)));
+    }
+}
+
+TEST(SumEvenGrandparent, basicTests){
+    VecIntTC tcs[]{
+        {
+            {},
+            0,
+        },
+        {
+            {1},
+            0,
+        },
+        {
+            {6,7,8,2,7,1,3,9,INT_MIN,1,4,INT_MIN,INT_MIN,INT_MIN,5},
+            18,
+        },
+        {
+            {1,2,3,4,5,6,7,8,9,10},
+            27,
+        },
+        {
+            {8,4,3,INT_MIN,INT_MIN,-6,6},
+            0,
+        },
+        {
+            {8,INT_MIN,6,INT_MIN,5,INT_MIN,4,INT_MIN,3,INT_MIN,2,INT_MIN,1},
+            11,
+        },
+        {
+            {1,2,INT_MIN,3,5,-4,INT_MIN,INT_MIN,7},
+            3,
+        },
+        {
+            {1,2,3,4,5,INT_MIN,6,7,INT_MIN,INT_MIN,INT_MIN,INT_MIN,8},
+            7,
+        },
+    };
+    InterviewSolutions prob;
+    for(VecIntTC tc: tcs){
+        TreeNode* h = genTreeFromVec(tc.tree);
+        EXPECT_EQ(prob.sumEvenGrandparent(h), tc.want);
     }
 }
 

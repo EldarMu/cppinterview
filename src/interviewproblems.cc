@@ -294,3 +294,20 @@ vector<vector<int>> InterviewSolutions::groupThePeople(vector<int>& groupSizes) 
     }
     return result;            
 }
+
+// get sum of tree nodes with even-valued grandparent
+// let's start off with simple dfs
+// 48ms beats 79% of c++ solutions
+void recursSumNodesGP(TreeNode* tn, bool evenGP, bool evenP, int (&sum)[1]){
+    if(!tn){ return; }
+    if(evenGP){ sum[0] += tn->val; }
+    bool curEven = tn->val%2 == 0;
+    recursSumNodesGP(tn->left, evenP, curEven, sum);
+    recursSumNodesGP(tn->right, evenP, curEven, sum);
+}
+
+int InterviewSolutions::sumEvenGrandparent(TreeNode* root) {
+    int sum[1]{0};
+    recursSumNodesGP(root, false, false, sum);
+    return sum[0];
+}

@@ -41,6 +41,7 @@ namespace interviewproblems {
 		int deepestLeavesSumDFS(TreeNode* root);
 		int deepestLeavesSumArr(TreeNode* root);
 		vector<vector<int>> groupThePeople(vector<int>& groupSizes);
+		int sumEvenGrandparent(TreeNode* root);
 	};
 }
 
