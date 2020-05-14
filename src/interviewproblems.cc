@@ -342,3 +342,20 @@ int InterviewSolutions::minTimeToVisitAllPoints(vector<vector<int>>& points) {
     }
     return steps;         
 }
+
+// given a string of digits with a # to indicate the last two digits
+// are part of a longer digit, convert 1->a 10->j... and return as string
+// done as string replace and ascii table shifts relying on valid ascii input
+string InterviewSolutions::freqAlphabets(string s) {
+    int sz = s.size();
+    if(sz==0){ return s; }
+    for(int i = sz-1; i>=0; i--){
+        if(s[i]=='#'){
+            s.replace(i-2, 3, 1, stoi(s.substr(i-2, 2))+96);
+            i -= 2;
+        } else {
+            s[i] += 48;
+        }
+    }
+    return s;    
+}

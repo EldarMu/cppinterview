@@ -43,6 +43,7 @@ namespace interviewproblems {
 		vector<vector<int>> groupThePeople(vector<int>& groupSizes);
 		int sumEvenGrandparent(TreeNode* root);
 		int minTimeToVisitAllPoints(vector<vector<int>>& points);
+		string freqAlphabets(string s);
 	};
 }
 

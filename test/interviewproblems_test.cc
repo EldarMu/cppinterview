@@ -414,4 +414,46 @@ TEST(MinTimeToVisitAllPoints, basicTest){
     }
 }
 
+struct StrStrTC{
+    string in;
+    string want;
+};
+
+TEST(freqAlphabets, basicTests){
+    StrStrTC tcs[]{
+        {
+            "",
+            "",
+        },
+        {
+            "12345",
+            "abcde",
+        },
+        {
+            "12#315#",
+            "lco",
+        },
+        {
+            "10#11#12",
+            "jkab"
+        },
+        {
+            "1326#",
+            "acz",
+        },
+        {
+            "25#",
+            "y",
+        },
+        {
+            "12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#",
+            "abcdefghijklmnopqrstuvwxyz",
+        },
+    };
+    InterviewSolutions prob;
+    for(StrStrTC tc: tcs){
+        EXPECT_EQ(prob.freqAlphabets(tc.in), tc.want);
+    }
+}
+
 
