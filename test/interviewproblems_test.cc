@@ -456,4 +456,56 @@ TEST(freqAlphabets, basicTests){
     }
 }
 
+struct VecVectoVecTC{
+    vector<int> tree1;
+    vector<int> tree2;
+    vector<int> want;
+};
+
+TEST(GetAllElements, basicTests){
+    VecVectoVecTC tcs[]{
+        {
+            {4,2,5,1,3},
+            {9,7,10,6,8},
+            {1,2,3,4,5,6,7,8,9,10},
+        },
+        {
+            {4,3,7,INT_MIN,INT_MIN,6,19},
+            {6,4,7,3,INT_MIN,INT_MIN,19},
+            {3,3,4,4,6,6,7,7,19,19},
+        },
+        {
+            {7},
+            {},
+            {7},
+        },
+        {
+            {},
+            {},
+            {},
+        },
+        {
+            {8,6,INT_MIN,5,INT_MIN,4,INT_MIN,3,INT_MIN,2,INT_MIN,1, INT_MIN},
+            {8,6,INT_MIN,5,INT_MIN,4,INT_MIN,3,INT_MIN,2,INT_MIN,1, INT_MIN},
+            {1,1,2,2,3,3,4,4,5,5,6,6,8,8},
+        },
+        {
+            {3,2,INT_MIN,1},
+            {1,INT_MIN,5,2,6},
+            {1,1,2,2,3,5,6},
+        },
+        {
+            {6,3,7,2,5,INT_MIN,8,1},
+            {9,4},
+            {1,2,3,4,5,6,7,8,9},
+        },
+    };
+    InterviewSolutions prob;
+    for(VecVectoVecTC tc: tcs){
+        TreeNode* tn1 = genTreeFromVec(tc.tree1);
+        TreeNode* tn2 = genTreeFromVec(tc.tree2);
+        EXPECT_THAT(prob.getAllElements(tn1, tn2), testing::ContainerEq(tc.want));
+    }
+}
+
 

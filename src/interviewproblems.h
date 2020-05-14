@@ -19,6 +19,7 @@ namespace interviewproblems {
 	using std::priority_queue;
 	using std::sort;
 	using std::queue;
+	using std::greater;
 
 	struct TreeNode {
 		int val;
@@ -44,6 +45,7 @@ namespace interviewproblems {
 		int sumEvenGrandparent(TreeNode* root);
 		int minTimeToVisitAllPoints(vector<vector<int>>& points);
 		string freqAlphabets(string s);
+		vector<int> getAllElements(TreeNode* root1, TreeNode* root2);
 	};
 }
 

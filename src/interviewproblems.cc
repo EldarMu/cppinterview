@@ -359,3 +359,41 @@ string InterviewSolutions::freqAlphabets(string s) {
     }
     return s;    
 }
+void inOrderTr(TreeNode* tn, vector<int>& vec){
+    if(!tn){ return; }
+    inOrderTr(tn->left, vec);
+    vec.push_back(tn->val);
+    inOrderTr(tn->right, vec);
+}
+
+// given two trees, return their values in sorted order
+// 240 ms, beats 84% of c++ solutions
+vector<int> InterviewSolutions::getAllElements(TreeNode* root1, TreeNode* root2) {
+        vector<int> res;
+        if(!root1 && !root2){ return res; }
+        vector<int> v1;
+        vector<int> v2;
+        inOrderTr(root1, v1);
+        inOrderTr(root2, v2);
+        auto it1 = v1.begin();
+        auto it2 = v2.begin();
+        res.reserve(v1.size()+v2.size());
+        while(it1 != v1.end() || it2 != v2.end()){
+            if(it1 != v1.end() && it2 != v2.end()){
+                if(*it1>*it2){
+                    res.push_back(*it2);
+                    it2++;
+                } else {
+                    res.push_back(*it1);
+                    it1++;
+                }
+            } else if(it1 != v1.end()){
+                res.push_back(*it1);
+                it1++;
+            } else {
+                res.push_back(*it2);
+                it2++;
+            }
+        }
+        return res;
+    }
