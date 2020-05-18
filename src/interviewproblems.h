@@ -46,6 +46,7 @@ namespace interviewproblems {
 		int minTimeToVisitAllPoints(vector<vector<int>>& points);
 		string freqAlphabets(string s);
 		vector<int> getAllElements(TreeNode* root1, TreeNode* root2);
+		bool isAlienSorted(vector<string>& words, string order);
 	};
 }
 

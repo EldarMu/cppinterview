@@ -508,4 +508,54 @@ TEST(GetAllElements, basicTests){
     }
 }
 
+struct AlienWordsTC{
+    vector<string> words;
+    string order;
+    bool want;
+};
+
+TEST(IsAlienSorted, basicTests){
+    AlienWordsTC tcs[]{
+        {
+            {},
+            "abcdefghijklmnopqrstuvwxyz",
+            true,
+        },
+        {
+            {"a", "a"},
+            "abcdefghijklmnopqrstuvwxyz",
+            true,
+        },
+        {
+            {"aaa","aa"},
+            "abcdefghijklmnopqrstuvwxyz",
+            false,
+        },
+        {
+            {"ab", "aaa"},
+            "abcdefghijklmnopqrstuvwxyz",
+            false,
+        },
+        {
+            {"apple", "app"},
+            "abcdefghijklmnopqrstuvwxyz",
+            false,
+        },
+        {
+            {"hello","leetcode"},
+            "hlabcdefgijkmnopqrstuvwxyz",
+            true,
+        },
+        {
+            {"word","world","row"},
+            "worldabcefghijkmnpqstuvxyz",
+            false,
+        },
+    };
+    InterviewSolutions prob;
+    for(AlienWordsTC tc: tcs){
+        EXPECT_EQ(prob.isAlienSorted(tc.words, tc.order), tc.want);
+    }
+}
+
 

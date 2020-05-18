@@ -397,3 +397,36 @@ vector<int> InterviewSolutions::getAllElements(TreeNode* root1, TreeNode* root2)
         }
         return res;
     }
+
+// aliens use the english lower-case alphabet, but the words
+// are in different order. check if vec of words is sorted
+// completely average solution beating 57% of c++ solutions
+// still neat to implement my own comparator though
+bool alienWordIsGreater(string s1, string s2, unordered_map<char, int>& m){
+    int minSize = s1.size()<s2.size()? s1.size():s2.size();
+    for(int i=0; i<minSize; i++){
+        int v1 = m[s1[i]];
+        int v2 = m[s2[i]];
+        if(v1<v2){
+            return false;
+        } else if(v1>v2){
+            return true;
+        }
+    }
+    return s1.size()>s2.size();
+
+}
+
+bool InterviewSolutions::isAlienSorted(vector<string>& words, string order) {
+    if(words.size()<2){ return true; }
+    unordered_map<char, int> m;
+    int iter = 0;
+    for(char c: order){
+        m.insert({c, iter});
+        iter++;
+    }
+    for(int i=0; i<words.size()-1; i++){
+        if(alienWordIsGreater(words[i], words[i+1], m)){ return false; }
+    }
+    return true;
+}
