@@ -558,4 +558,50 @@ TEST(IsAlienSorted, basicTests){
     }
 }
 
+struct KthTC{
+    int lo;
+    int hi;
+    int k;
+    int want;
+};
+
+TEST(GetKthPower, basicTests){
+    KthTC tcs[]{
+        {
+            12,
+            15,
+            2,
+            13,
+        },
+        {
+            1,
+            1,
+            1,
+            1,
+        },
+        {
+            7,
+            11,
+            4,
+            7,
+        },
+        {
+            10,
+            20,
+            5,
+            13,
+        },
+        {
+            1,
+            1000,
+            777,
+            570,
+        },
+    };
+
+    InterviewSolutions prob;
+    for(KthTC tc: tcs){
+        EXPECT_EQ(prob.getKth(tc.lo, tc.hi, tc.k), tc.want);
+    }
+}
 

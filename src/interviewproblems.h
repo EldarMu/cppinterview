@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <queue>
 #include <string>
+#include <utility>
 
 namespace interviewproblems {
 	using std::to_string;
@@ -20,6 +21,7 @@ namespace interviewproblems {
 	using std::sort;
 	using std::queue;
 	using std::greater;
+	using std::pair;
 
 	struct TreeNode {
 		int val;
@@ -47,6 +49,7 @@ namespace interviewproblems {
 		string freqAlphabets(string s);
 		vector<int> getAllElements(TreeNode* root1, TreeNode* root2);
 		bool isAlienSorted(vector<string>& words, string order);
+		int getKth(int lo, int hi, int k);
 	};
 }
 
