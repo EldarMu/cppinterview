@@ -433,9 +433,10 @@ bool InterviewSolutions::isAlienSorted(vector<string>& words, string order) {
 
 // sort elements by power value, return kth element (1-indexed)
 // dynamic programming is clearly a good call here
-// slow solution, but fun to program
-int getPower(int n, unordered_map<int, int>& powers){
-    if(powers.find(n)!= powers.end()){ return powers[n]; }
+// made way faster (beats 55% now) at half memory footprint
+int getPower(int n, short powers[300000]){
+    if(n==1){return 0;}
+    if(powers[n]!= 0){ return powers[n]; }
     if(n%2==0){
         powers[n] = 1 + getPower(n/2, powers);
     } else {
@@ -456,9 +457,7 @@ public:
 };
 
 int InterviewSolutions::getKth(int lo, int hi, int k) {
-    unordered_map<int, int> powers;
-    powers.reserve(hi*3+1);
-    powers[1] = 0;
+    short powers[300000] = {0};
     priority_queue<pair<int,int>, vector<pair<int,int>>, pairComparator> pq;
     for(int i = lo; i<=hi; i++){
         pq.push({getPower(i, powers), i});
