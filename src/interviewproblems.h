@@ -11,6 +11,7 @@
 #include <queue>
 #include <string>
 #include <utility>
+#include <unordered_set>
 
 namespace interviewproblems {
 	using std::to_string;
@@ -22,6 +23,7 @@ namespace interviewproblems {
 	using std::queue;
 	using std::greater;
 	using std::pair;
+	using std::hash;
 
 	struct TreeNode {
 		int val;
@@ -51,6 +53,7 @@ namespace interviewproblems {
 		bool isAlienSorted(vector<string>& words, string order);
 		int getKth(int lo, int hi, int k);
 		int getKthWhile(int lo, int hi, int k);
+		bool isPathCrossing(string path);
 	};
 }
 

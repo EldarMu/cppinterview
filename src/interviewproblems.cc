@@ -468,3 +468,41 @@ int InterviewSolutions::getKth(int lo, int hi, int k) {
     return pq.top().second;
 
 }
+
+
+// given a string of directions (N,S,E,W) each taking 1 step, return if
+// the created path crosses itself at any point.
+// 8 ms so not the fastest but interesting to make a custom hash function
+pair<int, int> move(pair<int, int>& tu, char c){
+    switch(c){
+        case 'N': 
+            tu.first+=1;
+            break;
+        case 'S':
+            tu.first-=1;
+            break;
+        case 'W':
+            tu.second-=1;
+            break;
+        case 'E':
+            tu.second+=1;
+            break; 
+    }
+    return tu;
+}
+
+bool InterviewSolutions::isPathCrossing(string path) {
+    pair<int, int> loc(0,0);
+    size_t locHash = hash<int>{}(loc.first) ^ (hash<int>{}(loc.second) << 1);
+    std::unordered_set<size_t> visited;
+    visited.insert(locHash);
+    for(char c: path){
+        loc = move(loc, c);
+        locHash = hash<int>{}(loc.first) ^ (hash<int>{}(loc.second) << 1);
+        if(visited.find(locHash) != visited.end()){
+            return true;
+        }
+        visited.insert(locHash);
+    }
+    return false;
+}

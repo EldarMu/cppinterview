@@ -1,4 +1,3 @@
-#include "../src/interviewproblems.h"
 #include "../src/testhelpers.h"
 #include <gmock/gmock.h>
 
@@ -602,6 +601,40 @@ TEST(GetKthPower, basicTests){
     InterviewSolutions prob;
     for(KthTC tc: tcs){
         EXPECT_EQ(prob.getKth(tc.lo, tc.hi, tc.k), tc.want);
+    }
+}
+
+struct StrToBoolTC{
+    string in;
+    bool want;
+};
+
+TEST(ispathcrossing, checkbasics){
+    StrToBoolTC tcs[]{
+        {
+            "N",
+            false,
+        },
+        {
+            "NNNN",
+            false,
+        },
+        {
+            "NSEW",
+            true,
+        },
+        {
+            "NNNSWEEWS",
+            true,
+        },
+        {
+            "WSSESEEE",
+            false,
+        },
+    };
+    InterviewSolutions prob;
+    for(StrToBoolTC tc: tcs){
+        EXPECT_EQ(prob.isPathCrossing(tc.in), tc.want);
     }
 }
 
