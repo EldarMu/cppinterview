@@ -506,3 +506,34 @@ bool InterviewSolutions::isPathCrossing(string path) {
     }
     return false;
 }
+
+// given a matrix of int "colors", a point in the matrix and a new color
+// return after recoloring that point and all points of the same color 
+// connected to it via a same-color path
+// basic recursive solution, 16 ms, beats 78% of c++ solutions
+vector<vector<int>> InterviewSolutions::floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+    if(image.size() == 0 || image.at(0).size() == 0){
+        return image;
+    }
+    int oldColor = image.at(sr).at(sc);
+    image.at(sr).at(sc) = newColor;
+    if(oldColor == newColor){
+        return image;
+    }
+    vector<pair<int,int>> dirs = {
+        {1,0},
+        {-1,0},
+        {0,1},
+        {0, -1},
+    };
+
+    for(pair<int, int> dir: dirs){
+        pair<int,int> offset = {dir.first+sr, dir.second+sc};
+        if(offset.first >= 0 && offset.first < image.size() 
+        && offset.second >= 0 && offset.second < image.at(0).size()
+        && image.at(offset.first).at(offset.second) == oldColor){
+            floodFill(image, offset.first, offset.second, newColor);
+        }
+    }
+    return image;
+}

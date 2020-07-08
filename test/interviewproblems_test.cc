@@ -638,3 +638,48 @@ TEST(ispathcrossing, checkbasics){
     }
 }
 
+struct FloodFillTC{
+    vector<vector<int>> in;
+    int sr;
+    int sc;
+    int newColor;
+    vector<vector<int>> want;
+};
+
+TEST(floodfill, basictests){
+    FloodFillTC tcs[]{
+        {
+            {{1}},
+            0,
+            0,
+            0,
+            {{0}},
+        },
+        {
+            {{1}},
+            0,
+            0,
+            1,
+            {{1}},
+        },
+        {
+            {{1,1},{0,0}},
+            0,
+            0,
+            5,
+            {{5,5},{0,0}},
+        },
+        {
+            {{0,0,1},{1,1,1}},
+            1,
+            1,
+            1,
+            {{0,0,1}, {1,1,1}}
+        },
+    };
+    InterviewSolutions prob;
+    for(FloodFillTC tc: tcs){
+        EXPECT_TRUE(two_d_vector_comparer(prob.floodFill(tc.in, tc.sr, tc.sc, tc.newColor), tc.want));
+    }
+}
+

@@ -13,6 +13,7 @@ namespace interviewproblems {
     TreeNode* getRandomNode(TreeNode* head);
     void recursAddNodes(TreeNode* tn, std::vector<TreeNode*> &nodes);
     bool groupMatcher(vector<vector<int>> want, vector<vector<int>> got);
+    bool two_d_vector_comparer(vector<vector<int>> got, vector<vector<int>> want);
 }
 
 #endif //CPPINTERVIEW_TESTHELPERS_H

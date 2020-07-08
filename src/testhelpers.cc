@@ -57,6 +57,11 @@ TreeNode* interviewproblems::getRandomNode(TreeNode* head){
     return allNodes[rval];
 }
 
+// generates a string of all possible number order matches
+// then compares with received vectors to make sure each one is present
+// instead of trying to compare each vector in "want" to each vector in "got"
+// simply treat them as strings, toss in a map, mark present if found
+// at the end just check if any expected matches weren't found
 bool interviewproblems::groupMatcher(vector<vector<int>> want, vector<vector<int>> got){
     unordered_map<string, bool> wanted;
     for(vector<int> v: want){
@@ -79,6 +84,23 @@ bool interviewproblems::groupMatcher(vector<vector<int>> want, vector<vector<int
     for(auto& it: wanted){
         if(it.second==false){
             return false;
+        }
+    }
+    return true;
+}
+
+// compares two rectangular vector matrices
+bool interviewproblems::two_d_vector_comparer(vector<vector<int>> got, vector<vector<int>> want){
+    if(got.size() != want.size() || got.at(0).size() != want.at(0).size()){
+        return false;
+    }
+    int row_len = want.size();
+    int col_len = want.at(0).size();
+    for(int i = 0; i < row_len; i++){
+        for(int j =0; j < col_len; j++){
+            if(want.at(i).at(j)!=got.at(i).at(j)){
+                return false;
+            }
         }
     }
     return true;

@@ -54,6 +54,7 @@ namespace interviewproblems {
 		int getKth(int lo, int hi, int k);
 		int getKthWhile(int lo, int hi, int k);
 		bool isPathCrossing(string path);
+		vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor);
 	};
 }
 
