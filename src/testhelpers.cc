@@ -106,5 +106,17 @@ bool interviewproblems::two_d_vector_comparer(vector<vector<int>> got, vector<ve
     return true;
 }
 
+ListNode* interviewproblems::genLinkedListFromVector(vector<int> in){
+    ListNode* head = new ListNode(0);
+    ListNode* cur = head;
+    for(int i: in){
+        cur->next = new ListNode(i);
+        cur = cur->next;
+    }
+    ListNode* ret = head->next;
+    delete head;
+    return ret;
+}
+
 
 

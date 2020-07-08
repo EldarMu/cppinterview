@@ -14,6 +14,7 @@ namespace interviewproblems {
     void recursAddNodes(TreeNode* tn, std::vector<TreeNode*> &nodes);
     bool groupMatcher(vector<vector<int>> want, vector<vector<int>> got);
     bool two_d_vector_comparer(vector<vector<int>> got, vector<vector<int>> want);
+    ListNode* genLinkedListFromVector(vector<int> in);
 }
 
 #endif //CPPINTERVIEW_TESTHELPERS_H

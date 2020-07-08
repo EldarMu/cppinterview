@@ -736,3 +736,44 @@ TEST(canconstructascii, basictests){
         EXPECT_EQ(prob.canConstructAscii(tc.letters, tc.magazines), tc.want);
     }
 }
+
+struct MergeTwoListsTC{
+    vector<int> l1;
+    vector<int> l2;
+    vector<int> want;
+};
+
+TEST(mergetwolists, basictests){
+    MergeTwoListsTC tcs[]{
+        {
+            {1,1,2},
+            {},
+            {1,1,2},
+        },
+        {
+            {0},
+            {0},
+            {0,0},
+        },
+        {
+            {1,2,3,4},
+            {1,2,5,6},
+            {1,1,2,2,3,4,5,6},
+        },
+        {
+            {},
+            {},
+            {},
+        },
+    };
+    InterviewSolutions prob;
+    for(MergeTwoListsTC tc: tcs){
+        vector<int> got;
+        ListNode *head = prob.mergeTwoLists(genLinkedListFromVector(tc.l1), genLinkedListFromVector(tc.l2));
+        while(head){
+            got.push_back(head->val);
+            head = head->next;
+        }
+        EXPECT_THAT(got, testing::ContainerEq(tc.want));
+    }
+}
