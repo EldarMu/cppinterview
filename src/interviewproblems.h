@@ -56,6 +56,7 @@ namespace interviewproblems {
 		bool isPathCrossing(string path);
 		vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor);
 		bool canConstruct(string ransomNote, string magazine);
+		bool canConstructAscii(string ransomNote, string magazine);
 	};
 }
 

@@ -554,3 +554,17 @@ bool InterviewSolutions::canConstruct(string ransomNote, string magazine) {
     }
     return true;
 }
+
+// once more but just using ascii codes
+// knocked time down to 44 ms, beats 65% of c++ solutions
+bool InterviewSolutions::canConstructAscii(string ransomNote, string magazine) {
+    int letters[128] = {0};
+    for(char c: magazine){
+        letters[c]++;
+    }
+    for(char c: ransomNote){
+        if(letters[c]<=0){return false;}
+        letters[c]--;
+    }
+    return true;
+}

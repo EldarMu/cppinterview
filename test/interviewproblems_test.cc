@@ -713,3 +713,26 @@ TEST(canconstruct, basictests){
     }
 }
 
+TEST(canconstructascii, basictests){
+    CanConstructTC tcs[]{
+        {
+            "a",
+            "aa",
+            true,
+        },
+        {
+            "aa",
+            "ab",
+            false,
+        },
+        {
+            "abbaab",
+            "aaabbb",
+            true,
+        },
+    };
+    InterviewSolutions prob;
+    for(CanConstructTC tc: tcs){
+        EXPECT_EQ(prob.canConstructAscii(tc.letters, tc.magazines), tc.want);
+    }
+}
