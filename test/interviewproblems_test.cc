@@ -683,3 +683,33 @@ TEST(floodfill, basictests){
     }
 }
 
+struct CanConstructTC{
+    string letters;
+    string magazines;
+    bool want;
+};
+
+TEST(canconstruct, basictests){
+    CanConstructTC tcs[]{
+        {
+            "a",
+            "aa",
+            true,
+        },
+        {
+            "aa",
+            "ab",
+            false,
+        },
+        {
+            "abbaab",
+            "aaabbb",
+            true,
+        },
+    };
+    InterviewSolutions prob;
+    for(CanConstructTC tc: tcs){
+        EXPECT_EQ(prob.canConstruct(tc.letters, tc.magazines), tc.want);
+    }
+}
+

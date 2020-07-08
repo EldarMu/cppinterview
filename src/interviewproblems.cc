@@ -537,3 +537,20 @@ vector<vector<int>> InterviewSolutions::floodFill(vector<vector<int>>& image, in
     }
     return image;
 }
+
+// find if the set of characters in ransomnote is a subset of magazine
+// works, slow though, 64 ms so beats only 39% of c++ solutions
+// but it does work and is very readable
+bool InterviewSolutions::canConstruct(string ransomNote, string magazine) {
+    unordered_map<char, int> letters;
+    for(char c: magazine){
+        letters[c]++;
+    }
+    for(char c: ransomNote){
+        if(letters.find(c) == letters.end() || letters[c] == 0){
+            return false;
+        }
+        letters[c]--;
+    }
+    return true;
+}
