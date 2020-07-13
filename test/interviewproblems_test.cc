@@ -777,3 +777,45 @@ TEST(mergetwolists, basictests){
         EXPECT_THAT(got, testing::ContainerEq(tc.want));
     }
 }
+
+struct FindLHSTC{
+    vector<int> in;
+    int want;
+};
+
+TEST(findLHS, basicTests){
+    FindLHSTC tcs[]{
+        {
+            {},
+            0,
+        },
+        {
+            {1},
+            0,
+        },
+        {
+            {1,3},
+            0,
+        },
+        {
+            {1,2},
+            2,
+        },
+        {
+            {-1,-1,-1,-1,1,2},
+            2,
+        },
+        {
+            {1,-1,-1,-1,2,},
+            2,
+        },
+        {
+            {0,3,5,6,1,0,3,2,0,7,7,-1},
+            4,
+        },
+    };
+    InterviewSolutions prob;
+    for(FindLHSTC tc: tcs){
+        EXPECT_EQ(prob.findLHS(tc.in), tc.want);
+    }
+}

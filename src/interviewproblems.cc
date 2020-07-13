@@ -369,34 +369,34 @@ void inOrderTr(TreeNode* tn, vector<int>& vec){
 // given two trees, return their values in sorted order
 // 240 ms, beats 84% of c++ solutions
 vector<int> InterviewSolutions::getAllElements(TreeNode* root1, TreeNode* root2) {
-        vector<int> res;
-        if(!root1 && !root2){ return res; }
-        vector<int> v1;
-        vector<int> v2;
-        inOrderTr(root1, v1);
-        inOrderTr(root2, v2);
-        auto it1 = v1.begin();
-        auto it2 = v2.begin();
-        res.reserve(v1.size()+v2.size());
-        while(it1 != v1.end() || it2 != v2.end()){
-            if(it1 != v1.end() && it2 != v2.end()){
-                if(*it1>*it2){
-                    res.push_back(*it2);
-                    it2++;
-                } else {
-                    res.push_back(*it1);
-                    it1++;
-                }
-            } else if(it1 != v1.end()){
-                res.push_back(*it1);
-                it1++;
-            } else {
+    vector<int> res;
+    if(!root1 && !root2){ return res; }
+    vector<int> v1;
+    vector<int> v2;
+    inOrderTr(root1, v1);
+    inOrderTr(root2, v2);
+    auto it1 = v1.begin();
+    auto it2 = v2.begin();
+    res.reserve(v1.size()+v2.size());
+    while(it1 != v1.end() || it2 != v2.end()){
+        if(it1 != v1.end() && it2 != v2.end()){
+            if(*it1>*it2){
                 res.push_back(*it2);
                 it2++;
+            } else {
+                res.push_back(*it1);
+                it1++;
             }
+        } else if(it1 != v1.end()){
+            res.push_back(*it1);
+            it1++;
+        } else {
+            res.push_back(*it2);
+            it2++;
         }
-        return res;
     }
+    return res;
+}
 
 // aliens use the english lower-case alphabet, but the words
 // are in different order. check if vec of words is sorted
@@ -598,4 +598,29 @@ ListNode* InterviewSolutions::mergeTwoLists(ListNode* l1, ListNode* l2) {
         }
     }
     return head->next;
+}
+
+// return the biggest sum of the counts of two elements
+// whose difference is exactly 1.
+// Basic solution with hashmap and checking for the biggest value every time
+// very slow solution
+int InterviewSolutions::findLHS(vector<int>& nums) {
+    std::unordered_map<int, int> number_counts;
+    int biggest_count = 0;
+    for(int i: nums){
+        if(number_counts.find(i) == number_counts.end()){
+            number_counts[i] = 1; 
+        } else {
+            number_counts[i]++;
+        }
+        if(number_counts.find(i-1) != number_counts.end() &&
+        number_counts[i-1]+number_counts[i] > biggest_count){
+            biggest_count = number_counts[i-1] + number_counts[i];
+        }
+        if(number_counts.find(i+1) != number_counts.end() &&
+        number_counts[i+1]+number_counts[i] > biggest_count){
+            biggest_count = number_counts[i] + number_counts[i+1];
+        }
+    }
+    return biggest_count;        
 }

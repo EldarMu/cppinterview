@@ -12,6 +12,7 @@
 #include <string>
 #include <utility>
 #include <unordered_set>
+#include <map>
 
 namespace interviewproblems {
 	using std::to_string;
@@ -66,6 +67,7 @@ namespace interviewproblems {
 		bool canConstruct(string ransomNote, string magazine);
 		bool canConstructAscii(string ransomNote, string magazine);
 		ListNode* mergeTwoLists(ListNode* l1, ListNode* l2);
+		int findLHS(vector<int>& nums);
 	};
 }
 
